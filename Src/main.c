@@ -58,7 +58,7 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 void save_to_flash(uint8_t *data)
 {
-	volatile uint32_t data_to_FLASH[(strlen((char*)data)/4) + 1];
+	volatile uint32_t data_to_FLASH[(strlen((char*)data)/4)	+ (int)((strlen((char*)data) % 4) != 0)];
 	memset((uint8_t*)data_to_FLASH, 0, strlen((char*)data_to_FLASH));
 	strcpy((char*)data_to_FLASH, (char*)data);
 

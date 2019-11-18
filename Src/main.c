@@ -64,7 +64,8 @@ void save_to_flash(uint8_t *data)
 
 	volatile uint32_t data_length = (strlen((char*)data_to_FLASH) / 4)
 									+ (int)((strlen((char*)data_to_FLASH) % 4) != 0);
-	volatile uint16_t pages = (data_length/(page_size / 4)) + 1;
+	volatile uint16_t pages = (strlen((char*)data)/page_size)
+									+ (int)((strlen((char*)data)%page_size) != 0);
 	  /* Unlock the Flash to enable the flash control register access *************/
 	  HAL_FLASH_Unlock();
 
